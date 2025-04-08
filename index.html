@@ -74,7 +74,7 @@
             <h2 class="section-title">Características del libro</h2>
             <div class="caracteristicas-flex">
                 <div class="caracteristica-imagen">
-                    <img src="c:\Users\Usuario\Downloads\imagen vendes o vendes.jpg" alt="Características del libro">
+                    <img src="c:\Users\Usuario\Downloads\imagen larga grand.jpg" alt="Características del libro">
                 </div>
                 <div class="caracteristica-lista">
                     <ul>
@@ -261,84 +261,13 @@
                             <i class="fab fa-cc-paypal"></i>
                         </div>
                     </div>
-                    <a href="#" class="btn-comprar-ahora" id="btn-comprar">COMPRAR AHORA</a>
-
+                    <a href="https://wa.me/51901185434?text=Hola,%20quiero%20comprar%20uno%20de%20tus%20productos" class="btn-comprar-ahora" id="btn-comprar" target="_blank">
+                        Consulta libro
+                    </a>
+                      
                     <!-- Contenedor del botón PayPal -->
                     <div id="paypal-button-container"></div>
-
-                    <!-- SDK de PayPal (añádelo antes de tu script.js) -->
-                    <script src="https://www.paypal.com/sdk/js?client-id=AdAPuIubHQ5WKVtR7D92a0tYlxaOmVCetxCX_ieRoOrtuQTDoI0jCKJ4qlX4diXUm_PhQjZpXQBnEUiK&currency=USD"></script>
-
-                    <script>
-                    paypal.Buttons({
-                        style: {
-                        layout: 'vertical',  // Diseño: 'vertical' u 'horizontal'
-                        color:  'gold',      // Color: 'gold', 'blue', 'silver'
-                        shape:  'rect',      // Forma: 'rect' (rectángulo), 'pill' (pastilla)
-                        label:  'paypal'     // Texto: 'paypal', 'checkout', 'buynow'
-                        },
-
-                        // Paso 1: Crear la orden de pago
-                        createOrder: function(data, actions) {
-                        // Obtiene el formato seleccionado (físico/digital/combo)
-                        const formato = document.querySelector('input[name="formato"]:checked').id;
-                        
-                        // Define precio y descripción según el formato
-                        let precio, descripcion;
-                        switch(formato) {
-                            case 'digital':
-                            precio = '19.99';
-                            descripcion = 'Libro Digital Vendes o Vendes';
-                            break;
-                            case 'combo':
-                            precio = '39.99';
-                            descripcion = 'Combo Vendes o Vendes (Físico + Digital)';
-                            break;
-                            default:  // Físico
-                            precio = '29.99';
-                            descripcion = 'Libro Físico Vendes o Vendes';
-                        }
-
-                        return actions.order.create({
-                            purchase_units: [{
-                            description: descripcion,
-                            amount: {
-                                value: precio,
-                                currency_code: 'USD'
-                            }
-                            }]
-                        });
-                        },
-
-                        // Paso 2: Capturar el pago aprobado
-                        onApprove: function(data, actions) {
-                        return actions.order.capture().then(function(details) {
-                            // Redirige a una página de confirmación
-                            window.location.href = `gracias.html?transaction_id=${details.id}`;
-                            
-                            // Opcional: Envía los datos a tu backend
-                            fetch('/guardar-venta', {
-                            method: 'POST',
-                            headers: { 'Content-Type': 'application/json' },
-                            body: JSON.stringify({
-                                transaction_id: details.id,
-                                payer_email: details.payer.email_address,
-                                amount: details.purchase_units[0].amount.value
-                            })
-                            });
-                        });
-                        },
-
-                        // Manejo de errores
-                        onError: function(err) {
-                        console.error("Error en PayPal:", err);
-                        alert("Ocurrió un error al procesar el pago. Por favor, inténtalo de nuevo.");
-                        }
-                    }).render('#paypal-button-container');  // Renderiza el botón en este contenedor
-                    </script>
-
-
-
+                    
                     <p class="seguridad"><i class="fas fa-lock"></i> Pago 100% seguro y encriptado</p>
                 </div>
             </div>
@@ -422,44 +351,6 @@
         </div>
     </section>
 
-    <div id="modal-checkout" class="modal">
-        <div class="modal-content">
-            <span class="close">&times;</span>
-            <h2>Finalizar compra</h2>
-            <form id="checkout-form">
-                <div class="form-group">
-                    <label for="nombre">Nombre completo</label>
-                    <input type="text" id="nombre" required>
-                </div>
-                <div class="form-group">
-                    <label for="email">Correo electrónico</label>
-                    <input type="email" id="email" required>
-                </div>
-                <div class="form-group">
-                    <label for="direccion">Dirección (para envío físico)</label>
-                    <input type="text" id="direccion">
-                </div>
-                <div class="form-group">
-                    <label for="tarjeta">Número de tarjeta</label>
-                    <input type="text" id="tarjeta" placeholder="XXXX XXXX XXXX XXXX" required>
-                </div>
-                <div class="form-row">
-                    <div class="form-group half">
-                        <label for="expiracion">Fecha de expiración</label>
-                        <input type="text" id="expiracion" placeholder="MM/AA" required>
-                    </div>
-                    <div class="form-group half">
-                        <label for="cvv">CVV</label>
-                        <input type="text" id="cvv" placeholder="123" required>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <button type="submit" class="btn-finalizar">Confirmar pedido</button>
-                </div>
-            </form>
-        </div>
-    </div>
-
     <footer>
         <div class="container">
             <div class="footer-flex">
@@ -503,6 +394,8 @@
         </div>
     </footer>
 
+    <!-- Script de PayPal principal cargado separadamente -->
+    <script src="https://www.paypal.com/sdk/js?client-id=AdAPuIubHQ5WKVtR7D92a0tYlxaOmVCetxCX_ieRoOrtuQTDoI0jCKJ4qlX4diXUm_PhQjZpXQBnEUiK&currency=USD" id="paypal-script"></script>
     <script src="script.js"></script>
 </body>
 </html>
