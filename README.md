@@ -32,12 +32,11 @@ Landing page profesional para el libro "Vendes o Vendes" de Grant Cardone. Desar
 
 ### Página principal
 ![pagian principal imagen](![vendes o vendes 1](https://github.com/user-attachments/assets/1dfd97b8-e789-4c3e-8ef8-7b1cce5d6231)
-
 )
 
 
 ### Diseño Responsivo
-![image](![image](https://github.com/user-attachments/assets/5f7abdb7-74ca-4e4d-915c-edf36c85e6f2)
+![image](![vendes imagen 2 ](https://github.com/user-attachments/assets/22ca3ddc-4dde-4c54-b722-79df5861e1cc)
 )
 
 ---
